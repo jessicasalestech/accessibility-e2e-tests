@@ -1,0 +1,19 @@
+{
+  "name": "accessibility-e2e-tests",
+  "version": "1.0.0",
+  "description": "Automated accessibility (a11y) testing with axe-core + Playwright: WCAG 2.1/2.2 scans, keyboard/focus checks, HTML report, and green CI.",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test",
+    "report": "tsc --project tsconfig.report.json && node dist-report/generate-report.js"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.2",
+    "axe-core": "^4.10.2",
+    "http-server": "^14.1.1",
+    "typescript": "^5.7.2"
+  }
+}

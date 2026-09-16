@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Playwright
+test-results/
+playwright-report/
+.blob-cache/
+
+# Generated accessibility report
+report/
+dist-report/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log

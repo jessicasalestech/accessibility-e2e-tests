@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inaccessible Demo — intentional WCAG violations</title>
+  <style>
+    :root { --low-contrast: #b3b3b3; }
+    body { font-family: system-ui, sans-serif; margin: 2rem; color: #111; }
+    header { margin-bottom: 1rem; }
+    .grey-text { color: var(--low-contrast); } /* fails AA (2.8:1) */
+    form > div { margin-bottom: 1.5rem; }
+    .card { border: 1px solid #ccc; padding: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Broken Shop</h1>
+    <h3>Deliberately inaccessible product page</h3> <!-- heading-order: h1 -> h3 skip -->
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Checkout</a>
+    </nav>
+  </header>
+
+  <main>
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='80'%3E%3Crect width='120' height='80' fill='%23ddd'/%3E%3C/svg%3E"> <!-- image-alt: missing alt -->
+
+    <p class="grey-text">
+      This fine print is nearly invisible against the background <a href="#more">more info</a>.
+    </p>
+
+    <!-- color-contrast on a text node will be reported on .grey-text -->
+
+    <h3>Leave a review</h3> <!-- heading-order continues -->
+
+    <form>
+      <div>
+        <input type="text"> <!-- label: no associated label, no placeholder, no aria -->
+      </div>
+      <div>
+        <input type="email" id="broken-email" placeholder="Email"> <!-- label: placeholder is not a label -->
+      </div>
+      <div>
+        <button type="submit"></button> <!-- button-name: empty button -->
+        <span style="display:none">Submit</span>
+      </div>
+      <div>
+        <a href="#footer"></a> <!-- link-name: empty anchor -->
+      </div>
+    </form>
+  </main>
+
+  <footer id="footer">
+    <p>&copy; 2026 Broken Shop.</p>
+  </footer>
+</body>
+</html>

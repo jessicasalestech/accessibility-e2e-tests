@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessible Demo — WCAG 2.1 AA compliant</title>
+  <style>
+    :root {
+      --body-bg: #ffffff;
+      --text: #1a1a1a;
+      --accent: #0b5bd3;
+      --accent-dark: #083d91;
+      --border: #c5c5c5;
+      --danger-bg: #fbe9e7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--body-bg);
+    }
+    a { color: var(--accent-dark); }
+    .skip-link {
+      position: absolute;
+      left: -1000px;
+      top: 0;
+      background: #000;
+      color: #fff;
+      padding: 0.6rem 1rem;
+      z-index: 100;
+    }
+    .skip-link:focus {
+      left: 0;
+      outline: 3px solid #ffdd00;
+    }
+    header { border-bottom: 1px solid var(--border); padding: 1rem 2rem; }
+    main { max-width: 900px; margin: 0 auto; padding: 2rem; }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1rem 2rem;
+      font-size: 0.9rem;
+      color: #444;
+    }
+    label { display: block; margin: 1rem 0 0.25rem; font-weight: 600; }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      max-width: 480px;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus,
+    a:focus {
+      outline: 3px solid #083d91;
+      outline-offset: 2px;
+    }
+    select[multiple],
+    fieldset { margin-bottom: 1rem; }
+    legend { font-weight: 700; }
+    button {
+      font-size: 1rem;
+      padding: 0.6rem 1.4rem;
+      margin-top: 1rem;
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover { background: var(--accent-dark); }
+    .status {
+      background: var(--danger-bg);
+      border-left: 4px solid #c62828;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      color: #3e2723;
+    }
+    ul { padding-left: 1.4rem; }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; padding: 0; margin: 0; }
+    nav a { text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header>
+    <h1>Accessible Coffee Shop</h1>
+    <nav aria-label="Primary navigation">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h2>Welcome</h2>
+    <p>
+      This page follows the <strong>WCAG 2.1 AA</strong> guidelines: semantic landmarks,
+      a correct heading order, labelled form fields, descriptive images, sufficient colour
+      contrast, and a logical keyboard tab order.
+    </p>
+
+    <img
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='120'%3E%3Crect width='400' height='120' fill='%23f1e5d8'/%3E%3Ctext x='20' y='70' font-size='18' fill='%23422d18'%3EWarm freshly brewed coffee in a ceramic cup%3C/text%3E%3C/svg%3E"
+      alt="A warm freshly brewed coffee in a ceramic cup"
+      width="400"
+      height="120">
+
+    <h2 id="menu">Menu highlights</h2>
+    <ul>
+      <li><strong>Espresso</strong> — rich and bold, made with single-origin beans.</li>
+      <li><strong>Matcha Latte</strong> — smooth ceremonial-grade matcha with oat milk.</li>
+      <li><strong>Cold Brew</strong> — slow-steeped for 18 hours, naturally sweet.</li>
+    </ul>
+
+    <h2 id="contact">Contact us</h2>
+    <p>Select how we should reach you and share your message below.</p>
+
+    <form>
+      <fieldset>
+        <legend>How should we contact you?</legend>
+        <input type="radio" id="email-opt" name="contact" value="email">
+        <label for="email-opt" style="display:inline; font-weight:400;">Email</label>
+        <br>
+        <input type="radio" id="phone-opt" name="contact" value="phone">
+        <label for="phone-opt" style="display:inline; font-weight:400;">Phone</label>
+      </fieldset>
+
+      <label for="name">Your name</label>
+      <input type="text" id="name" name="name" autocomplete="name">
+
+      <label for="email">Email address</label>
+      <input type="email" id="email" name="email" autocomplete="email">
+
+      <label for="newsletter">Subscribe to the newsletter</label>
+      <select id="newsletter" name="newsletter">
+        <option value="yes">Yes, send me news</option>
+        <option value="no">No thanks</option>
+      </select>
+
+      <label for="message">Your message</label>
+      <textarea id="message" name="message" rows="4"></textarea>
+
+      <button type="submit">Send message</button>
+      <p id="form-status" class="status" role="status" hidden>Message sent. Thank you!</p>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Accessible Coffee Shop. Proudly keyboard-friendly.</p>
+  </footer>
+</body>
+</html>
